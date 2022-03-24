@@ -1,0 +1,27 @@
+<mat-grid-list cols="1" *ngIf="ingredientes.length <= 0; else divPlatillo">
+  <mat-grid-tile>
+    <mat-spinner></mat-spinner>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
+<ng-template #divPlatillo>
+  <h1>Listado de ingredientes</h1>
+  <mat-divider></mat-divider>
+  <br>
+  
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAling="center" fxLayoutGap="20px">
+      <div fxFlex="30" fxFlex.lg="20" fxFlex.sm="30" *ngFor="let ingrediente of ingredientes">
+          <mat-card>
+            <mat-card-title>{{ ingrediente.strIngredient }}</mat-card-title>
+            <mat-card-content>
+                <p> {{ ingrediente.strDescription }} </p>
+              </mat-card-content>
+            <mat-card-actions align="end">
+              <button mat-button color="info" [routerLink]="['/bienvenido/detalle',ingrediente.strIngredient]">Ver Recetas</button>
+            </mat-card-actions>
+          </mat-card>
+      </div>
+  </div>
+</ng-template>
+

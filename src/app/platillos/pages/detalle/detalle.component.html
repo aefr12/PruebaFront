@@ -1,0 +1,42 @@
+<mat-grid-list cols="1" *ngIf="!platillo; else divPlatillo">
+  <mat-grid-tile>
+    <mat-spinner></mat-spinner>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #divPlatillo>
+  <div fxLayout="row" fxLayotut.xs="column" fxLayoutGap="30px">
+    <div fxFlex="33">
+      <h1>{{ platillo.strMeal }} <small> - {{ platillo.strCategory }}</small></h1>
+      <mat-divider></mat-divider>
+      <br>
+      <img [src]="platillo.strMealThumb | imagen | domSanitizer" width="100%" height="70%">
+    </div>
+    <div fxFlex="33">
+      <h5>{{ platillo.strInstructions }}</h5>
+      <mat-divider></mat-divider>
+      <mat-list>
+        <a mat-list-item [href]="platillo.strYoutube"> Ver en Youtube </a>
+        <a mat-list-item [href]="platillo.strSource"> Ver receta original </a>
+      </mat-list>
+    </div>
+    <div fxFlex="33">
+      <div fxLayout="row" fxLayotut.xs="column" fxLayoutGap="30px">
+        <div fxFlex="50">
+          <mat-list>
+            <mat-list-item *ngFor="let cant of cants" color="success">{{ cant }} </mat-list-item>
+          </mat-list>
+        </div>
+        <div fxFlex="50">
+          <mat-list>
+            <mat-list-item *ngFor="let ingredient of ingredients" color="accent"> {{ ingredient }} </mat-list-item>
+          </mat-list>
+        </div>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <button mat-button color="warn" (click)="regresar()">
+    Regresar
+  </button>
+</ng-template>
